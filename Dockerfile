@@ -4,7 +4,7 @@ LABEL maintainer "daniel@kulinski.net"
 
 RUN apk update && \
 apk upgrade && \
-apk add python3 && \
+apk add python && \
 rm -rf /var/cache/apk/*
 
 CMD ["/bin/bash"]
