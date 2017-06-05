@@ -1,0 +1,53 @@
+diff --git a/devLib/Makefile b/devLib/Makefile
+index cf665d6..73f6d68 100644
+--- a/devLib/Makefile
++++ b/devLib/Makefile
+@@ -37,7 +37,7 @@ DYNAMIC=libwiringPiDev.so.$(VERSION)
+ #DEBUG	= -g -O0
+ DEBUG	= -O2
+ CC	= gcc
+-INCLUDE	= -I.
++INCLUDE	= -I. -I/usr/local/include
+ DEFS	= -D_GNU_SOURCE
+ CFLAGS	= $(DEBUG) $(DEFS) -Wformat=2 -Wall -Winline $(INCLUDE) -pipe -fPIC
+ 
+@@ -94,7 +94,7 @@ install:	$(DYNAMIC)
+ 	$Q install -m 0755 -d						$(DESTDIR)$(PREFIX)/lib
+ 	$Q install -m 0755 libwiringPiDev.so.$(VERSION)			$(DESTDIR)$(PREFIX)/lib/libwiringPiDev.so.$(VERSION)
+ 	$Q ln -sf $(DESTDIR)$(PREFIX)/lib/libwiringPiDev.so.$(VERSION)	$(DESTDIR)/lib/libwiringPiDev.so
+-	$Q $(LDCONFIG)
++	$Q $(LDCONFIG) $(DESTDIR)$(PREFIX)/lib/
+ 
+ .PHONY:	install-static
+ install-static:	$(STATIC)
+@@ -120,7 +120,7 @@ uninstall:
+ 	$Q echo "[UnInstall]"
+ 	$Q cd $(DESTDIR)$(PREFIX)/include/ && rm -f $(HEADERS)
+ 	$Q cd $(DESTDIR)$(PREFIX)/lib/     && rm -f libwiringPiDev.*
+-	$Q $(LDCONFIG)
++	$Q $(LDCONFIG) $(DESTDIR)$(PREFIX)/lib/
+ 
+ 
+ .PHONY:	depend
+diff --git a/wiringPi/Makefile b/wiringPi/Makefile
+index e1868b9..8e849e1 100644
+--- a/wiringPi/Makefile
++++ b/wiringPi/Makefile
+@@ -105,7 +105,7 @@ install:	$(DYNAMIC)
+ 	$Q install -m 0755 -d						$(DESTDIR)$(PREFIX)/lib
+ 	$Q install -m 0755 libwiringPi.so.$(VERSION)			$(DESTDIR)$(PREFIX)/lib/libwiringPi.so.$(VERSION)
+ 	$Q ln -sf $(DESTDIR)$(PREFIX)/lib/libwiringPi.so.$(VERSION)	$(DESTDIR)/lib/libwiringPi.so
+-	$Q $(LDCONFIG)
++	$Q $(LDCONFIG) $(DESTDIR)$(PREFIX)/lib/
+ 
+ .PHONY:	install-static
+ install-static:	$(STATIC)
+@@ -131,7 +131,7 @@ uninstall:
+ 	$Q echo "[UnInstall]"
+ 	$Q cd $(DESTDIR)$(PREFIX)/include/ && rm -f $(HEADERS)
+ 	$Q cd $(DESTDIR)$(PREFIX)/lib/     && rm -f libwiringPi.*
+-	$Q $(LDCONFIG)
++	$Q $(LDCONFIG) $(DESTDIR)$(PREFIX)/lib/
+ 
+ 
+ .PHONY:	depend
