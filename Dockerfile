@@ -1,4 +1,4 @@
-FROM dkulinski75/rpi-alpine-base
+FROM dkulinski75/rpi-python:2
 
 LABEL maintainer "daniel@kulinski.net"
 
@@ -6,7 +6,6 @@ ADD alpine.patch /
 
 RUN apk update && \
 apk upgrade && \
-apk add python && \
 apk add py-pip && \
 apk add gcc musl-dev linux-headers && \
 apk add git perl sudo make swig python-dev && \
