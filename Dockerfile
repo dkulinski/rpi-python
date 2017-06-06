@@ -1,4 +1,4 @@
-FROM dkulinski75/rpi-alpine-base
+FROM dkulinski75/rpi-alpine-base:06-17
 
 LABEL maintainer "daniel@kulinski.net"
 
