@@ -16,6 +16,8 @@ cd /WiringPi-Python && sed -i "20i\ \ \ \ zip_safe=False," setup.py  && \
 cd /WiringPi-Python && python3 setup.py install && \
 apk del -r gcc musl-dev linux-headers py-pip \ 
 git perl sudo make swig python2-dev python3-dev && \
+ln -s /usr/bin/python3 /usr/bin/python && \
+ln -s /usr/bin/pip3 /usr/bin/pip && \
 rm -rf /var/cache/apk/* && rm -rf /WiringPi-Python /alpine.patch
 
 CMD ["/bin/bash"]
